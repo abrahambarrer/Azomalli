@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Conchas",
+      "description": "Una cubierta delicada y una miga suave. El clásico que siempre encuentra lugar en la mesa.",
+      "tag": "PARA ACOMPAÑAR TU CAFÉ",
+      "price": 18.00,
+      "image": "/static/images/pan_conchas.png",
+      "is_bestseller": true,
+      "is_seasonal": false,
+      "category": "Dulces"
+    },
+    {
+      "id": 2,
+      "name": "Roles de canela",
+      "description": "Capas de masa, un abrazo de canela y ese aroma que hace especial una pausa.",
+      "tag": "UN GUSTO SIN PRISA",
+      "price": 26.00,
+      "image": "/static/images/pan_roles.png",
+      "is_bestseller": true,
+      "is_seasonal": false,
+      "category": "Dulces"
+    },
+    {
+      "id": 3,
+      "name": "Panqué casero",
+      "description": "Una rebanada generosa, de textura tierna, para disfrutar a solas o partir entre todos.",
+      "tag": "MEJOR SI SE COMPARTE",
+      "price": 32.00,
+      "image": "/static/images/pan_panque.png",
+      "is_bestseller": true,
+      "is_seasonal": false,
+      "category": "Especiales"
+    },
+    {
+      "id": 4,
+      "name": "Conchas de vainilla",
+      "description": "Una versión especial con toque dulce y una presentación ideal para compartir en casa.",
+      "tag": "PARA UN MOMENTO ESPECIAL",
+      "price": 20.00,
+      "image": "/static/images/pan_vainilla.png",
+      "is_bestseller": false,
+      "is_seasonal": true,
+      "category": "Dulces"
+    },
+    {
+      "id": 5,
+      "name": "Pan de chocolate",
+      "description": "Un pan tierno con trozos de chocolate para acompañar el café, el té o un momento dulce.",
+      "tag": "PARA EL POSTRE CASERO",
+      "price": 24.00,
+      "image": "/static/images/pan_chocolate.png",
+      "is_bestseller": false,
+      "is_seasonal": true,
+      "category": "Dulces"
+    },
+    {
+      "id": 6,
+      "name": "Bolillo integral",
+      "description": "Una opción más rústica, con textura suave y un perfil ideal para acompañar o compartir.",
+      "tag": "PARA CADA DÍA",
+      "price": 12.00,
+      "image": "/static/images/pan_bolillo.png",
+      "is_bestseller": false,
+      "is_seasonal": true,
+      "category": "Rústicos"
+    }
+  ]
+}
