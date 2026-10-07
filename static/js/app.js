@@ -266,21 +266,6 @@ function initNavigationEvents() {
       scrollToSection('catalogo');
     });
   }
-
-  const footerCtaBtn = document.getElementById('footer-cta-btn');
-  if (footerCtaBtn) {
-    footerCtaBtn.addEventListener('click', () => {
-      scrollToSection('catalogo');
-      showToast('¡Explora nuestros panes y elige los tuyos!');
-    });
-  }
-
-  const backToTopBtn = document.getElementById('back-to-top-btn');
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 }
 
 function scrollToSection(sectionId) {

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Las Glorias de Azomalli · Panadería 100% Casera</title>
+  
+  <!-- Tipografías de Google Fonts: DM Serif Display & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" type="image/png" href="/static/images/logo.png">
+</head>
+<body>
+
+  <!-- ========================================================= -->
+  <!-- BARRA DE NAVEGACIÓN (HEADER)                              -->
+  <!-- ========================================================= -->
+  <header class="navbar-wrapper">
+    <div class="navbar-container">
+      <!-- Identidad de la Panadería -->
+      <a href="#" class="brand-identity">
+        <img src="/static/images/logo.png" class="brand-logo">
+        <span class="brand-name">Las Glorias de Azomalli</span>
+      </a>
+
+      <!-- Navbar -->
+      <nav class="nav-links">
+        <!-- Catalogo -->
+        <a href="#catalogo" class="nav-link" id="nav-catalogo-link">Catálogo</a>
+        <!-- Mis pedidos -->
+        <a href="#mis-pedidos" class="nav-link" id="nav-pedidos-link">Mis pedidos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================= -->
+    <!-- HERO DE COMPRA                                            -->
+    <!-- ========================================================= -->
+    <section class="hero-section">
+
+      <div class="hero-container">
+
+        <!-- Columna Izquierda -->
+        <div class="hero-content">
+
+          <h1 class="hero-title">Pan...<br>¡Que sabe a Gloria!</h1>
+          <p class="hero-description">
+            Explora el catálogo, crea tu cuenta, añade productos y consulta el estado de tu pedido en cualquier momento.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#catalogo" class="btn-primary" id="hero-explore-btn">
+              <span>Explorar catálogo</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Columna Derecha: Imagen Protagonista y Sellos -->
+        <div class="hero-visual">
+          <div class="hero-image-wrapper">
+            <img src="/static/images/hero_conchas.png" class="hero-main-img">
+          </div>
+        </div>
+
+      </div>
+      
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- BANDA: ESENCIA DE LA PANADERÍA                            -->
+    <!-- ========================================================= -->
+    <section class="brand-essence-banner">
+      <div class="essence-container">
+        <div class="essence-item">
+          <svg class="sparkle-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
+          </svg>
+          <span class="essence-title">Manos que amasan</span>
+        </div>
+        <div class="essence-item">
+          <svg class="sparkle-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
+          </svg>
+          <span class="essence-title">Tiempo que transforma</span>
+        </div>
+        <div class="essence-item">
+          <svg class="sparkle-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
+          </svg>
+          <span class="essence-title">Pan que reúne</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- CATÁLOGO COMPLETO (3 SECCIONES SEGÚN REQUERIMIENTOS)      -->
+    <!-- ========================================================= -->
+    <section class="catalog-section" id="catalogo">
+      <div class="catalog-container">
+        <!-- Encabezado General del Catálogo -->
+        <div class="catalog-header">
+          <span class="eyebrow-accent">EXPLORA EL CATÁLOGO</span>
+          <h2 class="section-headline">Encuentra el pan perfecto para cada momento.</h2>
+          <p class="section-lead">
+            Descubre las opciones más buscadas, los productos de temporada y toda la variedad disponible para encargar.
+          </p>
+        </div>
+
+        <!-- SECCIÓN 1: PRODUCTOS MÁS VENDIDOS -->
+        <div class="catalog-block" id="seccion-mas-vendidos">
+          <div class="block-header">
+            <span class="block-eyebrow">MÁS VENDIDOS</span>
+            <h3 class="block-title">Los favoritos de la casa.</h3>
+            <p class="block-desc">
+              Los productos que más se repiten en las mesas y que mejor acompañan el café, el té o una tarde tranquila.
+            </p>
+          </div>
+          <!-- Contenedor dinámico donde se renderizan las tarjetas de productos -->
+          <div class="products-grid" id="bestsellers-grid">
+            <!-- Cargado vía JS o fallback estático -->
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2: PRODUCTOS DE TEMPORADA -->
+        <div class="catalog-block" id="seccion-temporada">
+          <div class="block-header">
+            <span class="block-eyebrow">PRODUCTOS DE TEMPORADA</span>
+            <h3 class="block-title">Nuevos sabores para compartir.</h3>
+            <p class="block-desc">
+              Opciones especiales pensadas para acompañar el momento, la estación y el gusto de la casa.
+            </p>
+          </div>
+          <!-- Contenedor dinámico de temporada -->
+          <div class="products-grid" id="seasonal-grid">
+            <!-- Cargado vía JS -->
+          </div>
+        </div>
+
+        <!-- SECCIÓN 3: TODOS LOS PRODUCTOS -->
+        <div class="catalog-block" id="seccion-todos">
+          <div class="block-header">
+            <span class="block-eyebrow">TODOS LOS PRODUCTOS</span>
+            <h3 class="block-title">La variedad completa para elegir.</h3>
+            <p class="block-desc">
+              Explora todos los productos disponibles y crea tu pedido con las opciones que mejor se adapten a tu antojo.
+            </p>
+            
+            <!-- Evento de Usuario: Filtro de Categorías -->
+            <div class="category-filters" id="category-filter-buttons" role="tablist" aria-label="Filtro de productos">
+              <button class="filter-pill active" data-category="Todos" role="tab" aria-selected="true">Todos</button>
+              <button class="filter-pill" data-category="Dulces" role="tab" aria-selected="false">Dulces</button>
+              <button class="filter-pill" data-category="Rústicos" role="tab" aria-selected="false">Rústicos</button>
+              <button class="filter-pill" data-category="Especiales" role="tab" aria-selected="false">Especiales</button>
+            </div>
+          </div>
+          <!-- Contenedor dinámico con todos los productos -->
+          <div class="products-grid" id="all-products-grid">
+            <!-- Cargado vía JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- PIE DE PÁGINA (FOOTER)                                    -->
+  <!-- ========================================================= -->
+  <footer class="footer-wrapper">
+
+    <div class="footer-container">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/static/images/logo.png" alt="Logo Las Glorias de Azomalli" class="footer-logo">
+          <div class="footer-info">
+            <span class="footer-title">Las Glorias de Azomalli</span>
+            <p class="footer-subtitle">Panadería 100% casera.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">Las Glorias de Azomalli.</span>
+        <div class="footer-links">
+          <a href="#catalogo" class="footer-link">Nuestros panes</a>
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- COMPONENTES PROPIOS MODULARES (DRAWER Y MODALES)           -->
+  <!-- ========================================================= -->
+
+  <!-- Toast de Notificaciones para eventos de usuario -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts: Componentes modulares y lógica de la aplicación -->
+  <script src="/static/js/components/product-card.js"></script>
+  <script src="/static/js/components/profile-dropdown.js"></script>
+  <script src="/static/js/components/cart-drawer.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
