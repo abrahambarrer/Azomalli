@@ -1,7 +1,5 @@
 /**
- * COMPONENTE PROPIO 1: <product-card>
- * Web Component personalizado para renderizar de manera modular
- * las tarjetas de productos del catálogo de Las Glorias de Azomalli.
+ * Componente: <product-card>
  */
 class ProductCard extends HTMLElement {
   constructor() {
@@ -70,7 +68,6 @@ class ProductCard extends HTMLElement {
   }
 
   handleAddToCart(button) {
-    // Feedback visual momentáneo
     const originalText = button.querySelector('.btn-text').textContent;
     button.classList.add('added');
     button.querySelector('.btn-text').textContent = '¡Agregado! ✓';

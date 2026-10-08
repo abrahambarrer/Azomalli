@@ -11,49 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Estilos principales -->
-  <!-- <link rel="stylesheet" href="/static/css/styles.css"> -->
+  <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="icon" type="image/png" href="/static/images/logo.png">
 </head>
 <body>
 
-  <!-- ========================================================= -->
-  <!-- BARRA DE NAVEGACIÓN (HEADER)                              -->
-  <!-- ========================================================= -->
+  <!-- Navbar -->
   <header class="navbar-wrapper">
     <div class="navbar-container">
       <!-- Identidad de la Panadería -->
-      <a href="#" class="brand-identity" aria-label="Inicio - Las Glorias de Azomalli">
-        <img src="/static/images/logo.png" alt="Logotipo Las Glorias de Azomalli" class="brand-logo">
+      <a href="#" class="brand-identity">
+        <img src="/static/images/logo.png" class="brand-logo">
         <span class="brand-name">Las Glorias de Azomalli</span>
       </a>
 
-      <!-- Menú de Enlaces y Navegación -->
-      <nav class="nav-links" aria-label="Navegación principal">
-        <!-- Requisito: Al hacer clic en Catálogo, scrollea suavemente hacia abajo -->
+      <!-- Navbar -->
+      <nav class="nav-links">
+        <!-- Catalogo -->
         <a href="#catalogo" class="nav-link" id="nav-catalogo-link">Catálogo</a>
-        
-        <!-- Requisito: Mis pedidos -->
+        <!-- Mis pedidos -->
         <a href="#mis-pedidos" class="nav-link" id="nav-pedidos-link">Mis pedidos</a>
-
-        <!-- Requisito: Dropdown Mi Perfil estilo Amazon -->
-        <div class="user-menu-container" id="user-menu-wrapper">
-          <button class="nav-user-btn" id="user-dropdown-btn" aria-haspopup="true" aria-expanded="false" title="Mi Cuenta">
-            <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="5"></circle>
-              <path d="M20 21a8 8 0 1 0-16 0"></path>
-            </svg>
-            <div class="user-text-wrap">
-              <span class="user-greeting" id="nav-user-greeting">Hola, Identifícate</span>
-              <span class="user-label" id="nav-user-name">Mi Perfil</span>
-            </div>
-            <svg class="icon-svg chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-
-          <!-- Componente Dropdown estilo Amazon montado dinámicamente -->
-          <user-profile-dropdown id="profile-dropdown"></user-profile-dropdown>
-        </div>
 
         <!-- Requisito: Ícono de Carrito con Contador dinámico de Estado -->
         <button class="cart-btn" id="open-cart-btn" aria-label="Ver carrito de compras">
@@ -64,19 +41,21 @@
           </svg>
           <span class="cart-badge" id="cart-counter">0</span>
         </button>
+
       </nav>
+
     </div>
   </header>
 
   <main>
-    <!-- ========================================================= -->
-    <!-- HERO DE COMPRA                                            -->
-    <!-- ========================================================= -->
+    <!-- Hero de compra -->
     <section class="hero-section">
+
       <div class="hero-container">
-        <!-- Columna Izquierda: Mensaje y Llamados a la Acción -->
+
+        <!-- Columna Izquierda -->
         <div class="hero-content">
-          <span class="eyebrow-accent">PANADERÍA 100% CASERA</span>
+
           <h1 class="hero-title">Pan...<br>¡Que sabe a Gloria!</h1>
           <p class="hero-description">
             Explora el catálogo, crea tu cuenta, añade productos y consulta el estado de tu pedido en cualquier momento.
@@ -85,55 +64,23 @@
           <div class="hero-actions">
             <a href="#catalogo" class="btn-primary" id="hero-explore-btn">
               <span>Explorar catálogo</span>
-              <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
             </a>
-            <button class="link-underline" id="hero-cart-link">Ver carrito</button>
           </div>
 
-          <div class="hero-note">
-            <svg class="icon-wheat" width="24" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 22 16 8"></path>
-              <path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-              <path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-              <path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-              <path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"></path>
-              <path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path>
-              <path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path>
-              <path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path>
-            </svg>
-            <span>Hecho a mano. Para compartir. Para disfrutar.</span>
-          </div>
         </div>
 
         <!-- Columna Derecha: Imagen Protagonista y Sellos -->
         <div class="hero-visual">
           <div class="hero-image-wrapper">
-            <img src="/static/images/hero_conchas.png" alt="Conchas recién horneadas artesanales" class="hero-main-img">
-            
-            <!-- Sello Casero Flotante -->
-            <div class="seal-badge" aria-hidden="true">
-              <span class="seal-number">100%</span>
-              <span class="seal-text">CASERO</span>
-              <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="#9C291D" stroke="#9C291D" stroke-width="1">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </svg>
-            </div>
-
-            <!-- Pie de foto flotante -->
-            <div class="hero-caption">
-              <span>Un pequeño gusto. Un gran momento.</span>
-            </div>
+            <img src="/static/images/hero_conchas.png" class="hero-main-img">
           </div>
         </div>
+
       </div>
+      
     </section>
 
-    <!-- ========================================================= -->
-    <!-- BANDA: ESENCIA DE LA PANADERÍA                            -->
-    <!-- ========================================================= -->
+    <!-- Separador -->
     <section class="brand-essence-banner">
       <div class="essence-container">
         <div class="essence-item">
@@ -157,9 +104,7 @@
       </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CATÁLOGO COMPLETO (3 SECCIONES SEGÚN REQUERIMIENTOS)      -->
-    <!-- ========================================================= -->
+    <!-- Catalogo -->
     <section class="catalog-section" id="catalogo">
       <div class="catalog-container">
         <!-- Encabezado General del Catálogo -->
@@ -180,13 +125,13 @@
               Los productos que más se repiten en las mesas y que mejor acompañan el café, el té o una tarde tranquila.
             </p>
           </div>
-          <!-- Contenedor dinámico donde se renderizan las tarjetas de productos -->
+          <!-- Contenedor dinámico de tarjetas de productos -->
           <div class="products-grid" id="bestsellers-grid">
-            <!-- Cargado vía JS o fallback estático -->
+            <!-- Productos de seccion 1 -->
           </div>
         </div>
 
-        <!-- SECCIÓN 2: PRODUCTOS DE TEMPORADA -->
+        <!-- SECCION 2: PRODUCTOS DE TEMPORADA -->
         <div class="catalog-block" id="seccion-temporada">
           <div class="block-header">
             <span class="block-eyebrow">PRODUCTOS DE TEMPORADA</span>
@@ -197,11 +142,11 @@
           </div>
           <!-- Contenedor dinámico de temporada -->
           <div class="products-grid" id="seasonal-grid">
-            <!-- Cargado vía JS -->
+            <!-- Productos de seccion 2 -->
           </div>
         </div>
 
-        <!-- SECCIÓN 3: TODOS LOS PRODUCTOS -->
+        <!-- SECCION 3: TODOS LOS PRODUCTOS -->
         <div class="catalog-block" id="seccion-todos">
           <div class="block-header">
             <span class="block-eyebrow">TODOS LOS PRODUCTOS</span>
@@ -210,7 +155,7 @@
               Explora todos los productos disponibles y crea tu pedido con las opciones que mejor se adapten a tu antojo.
             </p>
             
-            <!-- Evento de Usuario: Filtro de Categorías -->
+            <!-- Evento de Usuario -->
             <div class="category-filters" id="category-filter-buttons" role="tablist" aria-label="Filtro de productos">
               <button class="filter-pill active" data-category="Todos" role="tab" aria-selected="true">Todos</button>
               <button class="filter-pill" data-category="Dulces" role="tab" aria-selected="false">Dulces</button>
@@ -220,185 +165,50 @@
           </div>
           <!-- Contenedor dinámico con todos los productos -->
           <div class="products-grid" id="all-products-grid">
-            <!-- Cargado vía JS -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- PROPUESTA DE COMPRA (VALORES)                             -->
-    <!-- ========================================================= -->
-    <section class="values-section">
-      <div class="values-container">
-        <div class="values-header">
-          <div class="values-title-wrap">
-            <span class="eyebrow-light">TU COMPRA, CON TODO EL CARIÑO</span>
-            <h2 class="values-headline">Casero no es una etiqueta.<br>Es nuestra esencia.</h2>
-          </div>
-          <p class="values-lead">
-            Nos gusta el pan con personalidad: el que conserva la huella de las manos y convierte algo cotidiano en un pequeño placer.
-          </p>
-        </div>
-
-        <div class="values-grid">
-          <div class="value-card">
-            <svg class="value-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9"></path>
-            </svg>
-            <h3 class="value-name">El cariño se nota</h3>
-            <p class="value-desc">En cada forma, en cada detalle y en las ganas de hacer algo rico para alguien más.</p>
-          </div>
-
-          <div class="value-card">
-            <svg class="value-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M2 22 16 8"></path>
-              <path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-              <path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-              <path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path>
-            </svg>
-            <h3 class="value-name">Lo sencillo, bien hecho</h3>
-            <p class="value-desc">Masa, manos y atención. La esencia del pan está en cuidar lo que de verdad importa.</p>
-          </div>
-
-          <div class="value-card">
-            <svg class="value-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-              <line x1="6" y1="2" x2="6" y2="4"></line>
-              <line x1="10" y1="2" x2="10" y2="4"></line>
-              <line x1="14" y1="2" x2="14" y2="4"></line>
-            </svg>
-            <h3 class="value-name">Un sabor cercano</h3>
-            <p class="value-desc">Para el café de la mañana, la sobremesa o ese antojo que no necesita una ocasión.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- NUESTRA HISTORIA                                          -->
-    <!-- ========================================================= -->
-    <section class="story-section" id="nuestra-historia">
-      <div class="story-container">
-        <div class="story-visual">
-          <img src="/static/images/pan_chocolate.png" alt="Mesa de trabajo artesanal con panes recién horneados" class="story-img">
-          <p class="story-img-caption">Entre harina, manos y el gusto de compartir.</p>
-        </div>
-
-        <div class="story-text">
-          <span class="eyebrow-accent">LAS GLORIAS DE AZOMALLI</span>
-          <h2 class="section-headline">Nuestra historia<br>se escribe en casa.</h2>
-          <p class="story-paragraph">
-            Hablar de Las Glorias de Azomalli es hablar del pan como un gesto de cariño. De una mesa que invita a acercarse y del placer de ofrecer algo hecho con las propias manos.
-          </p>
-          <p class="story-paragraph">
-            Esa es la historia que queremos seguir contando: la de lo sencillo, lo cálido y lo compartido. Porque un pan puede ser pequeño, pero el momento que acompaña no lo es.
-          </p>
-          <div class="story-signature">
-            <span class="signature-quote">"De nuestras manos a tu mesa."</span>
-            <span class="signature-badge">PANADERÍA 100% CASERA</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- MOMENTOS PARA COMPARTIR                                   -->
-    <!-- ========================================================= -->
-    <section class="moments-section" style="background-image: url('/static/images/pan_bolillo.png');">
-      <div class="moments-overlay"></div>
-      <div class="moments-container">
-        <div class="moments-content">
-          <span class="eyebrow-light">PARA LOS MOMENTOS QUE IMPORTAN</span>
-          <h2 class="moments-title">La mejor parte<br>es compartirlo.</h2>
-          <p class="moments-desc">
-            Un desayuno sin prisa, una visita inesperada o una mesa llena. Siempre hay una buena razón para partir el pan.
-          </p>
-          <div class="moments-pills">
-            <span class="moment-pill">En casa</span>
-            <span class="moment-pill">Para regalar</span>
-            <span class="moment-pill">Para reunirnos</span>
+            <!-- Todos los productos -->
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ========================================================= -->
-  <!-- PIE DE PÁGINA (FOOTER)                                    -->
-  <!-- ========================================================= -->
+  <!-- Footer -->
   <footer class="footer-wrapper">
+
     <div class="footer-container">
+
       <div class="footer-top">
         <div class="footer-brand">
           <img src="/static/images/logo.png" alt="Logo Las Glorias de Azomalli" class="footer-logo">
           <div class="footer-info">
             <span class="footer-title">Las Glorias de Azomalli</span>
-            <p class="footer-subtitle">Panadería 100% casera. Un poquito de hogar en cada pan.</p>
+            <p class="footer-subtitle">Panadería 100% casera.</p>
           </div>
         </div>
-        <button class="btn-primary" id="footer-cta-btn">
-          <span>Hagamos tu encargo</span>
-          <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </button>
       </div>
 
       <div class="footer-bottom">
-        <span class="footer-copy">Las Glorias de Azomalli · Hecho con cariño.</span>
+        <span class="footer-copy">Las Glorias de Azomalli.</span>
         <div class="footer-links">
           <a href="#catalogo" class="footer-link">Nuestros panes</a>
-          <a href="#nuestra-historia" class="footer-link">Nuestra historia</a>
-          <button class="back-to-top" id="back-to-top-btn">
-            <span>Volver arriba</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="19" x2="12" y2="5"></line>
-              <polyline points="5 12 12 5 19 12"></polyline>
-            </svg>
-          </button>
         </div>
       </div>
+
     </div>
+
   </footer>
 
   <!-- ========================================================= -->
   <!-- COMPONENTES PROPIOS MODULARES (DRAWER Y MODALES)           -->
   <!-- ========================================================= -->
 
-  <!-- Componente Propio 2: Drawer de Carrito de Compras -->
   <cart-drawer id="cart-drawer-component"></cart-drawer>
-
-  <!-- Modal Interactivo: Mis Pedidos -->
-  <div class="modal-overlay" id="orders-modal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 class="modal-title">Mis Pedidos</h3>
-        <button class="modal-close-btn" id="close-orders-modal" aria-label="Cerrar modal">&times;</button>
-      </div>
-      <div class="modal-body" id="orders-modal-body">
-        <div class="empty-state">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#79685C" stroke-width="1.5">
-            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-            <path d="M3 6h18"></path>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-          <p>No tienes pedidos en curso aún.</p>
-          <small>¡Agrega tus panes preferidos al carrito y haz tu primer encargo!</small>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Toast de Notificaciones para eventos de usuario -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
   <!-- Scripts: Componentes modulares y lógica de la aplicación -->
   <script src="/static/js/components/product-card.js"></script>
-  <script src="/static/js/components/profile-dropdown.js"></script>
   <script src="/static/js/components/cart-drawer.js"></script>
   <script src="/static/js/app.js"></script>
 </body>

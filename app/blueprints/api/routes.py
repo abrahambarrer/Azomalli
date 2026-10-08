@@ -1,26 +1,10 @@
 import os
-import json
-from flask import Flask, render_template, jsonify, request
+from flask import request, jsonify, Blueprint
+from app.services import load_products
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+api_bp = Blueprint('api', __name__)
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), 'data', 'products.json')
-
-def load_products():
-    """Lee y retorna los productos desde el archivo JSON local."""
-    if not os.path.exists(DATA_FILE):
-        return []
-    with open(DATA_FILE, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        return data.get('products', [])
-
-@app.route('/')
-def home():
-    """Renderiza la Landing Page del e-commerce."""
-    products = load_products()
-    return render_template('index.html', initial_products=products)
-
-@app.route('/api/products', methods=['GET'])
+@api_bp.route('/products', methods=['GET'])
 def get_products():
     """Endpoint API para obtener el catálogo de productos con filtros opcionales."""
     products = load_products()
@@ -42,7 +26,7 @@ def get_products():
         "products": products
     })
 
-@app.route('/api/orders', methods=['POST'])
+@api_bp.route('/orders', methods=['POST'])
 def create_order():
     """Simula la creación de un pedido a partir del carrito de compras."""
     order_data = request.get_json() or {}
@@ -63,7 +47,3 @@ def create_order():
         "items_count": sum(item.get('quantity', 1) for item in items),
         "message": f"¡Pedido {order_id} recibido con éxito! En breve estará horneándose con amor."
     })
-
-if __name__ == '__main__':
-    print("Iniciando servidor en http://127.0.0.1:5000")
-    app.run(debug=True, port=5000)
