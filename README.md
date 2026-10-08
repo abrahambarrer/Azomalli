@@ -64,7 +64,7 @@ En PowerShell o terminal de Windows:
 ### 2. Iniciar el servidor de Flask
 
 ```powershell
-flask --app app.py run --debug
+flask --app run.py run --debug
 ```
 
 ### 3. Abrir en el navegador
