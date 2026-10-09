@@ -49,7 +49,6 @@ async function fetchProducts() {
 function renderCatalogSections() {
   const bestsellersContainer = document.getElementById('bestsellers-grid');
   const seasonalContainer = document.getElementById('seasonal-grid');
-  const allProductsContainer = document.getElementById('all-products-grid');
 
   // Sección 1: Más vendidos
   if (bestsellersContainer) {
