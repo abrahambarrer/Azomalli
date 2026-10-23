@@ -1,6 +1,6 @@
 # Las Glorias de Azomalli · E-commerce de Panadería Artesanal
 
-Primer esqueleto funcional del proyecto de e-commerce para la panadería artesanal **"Las Glorias de Azomalli"**, diseñado a partir del recurso oficial de [Figma (Node ID: 4:1609)](https://www.figma.com/design/nLH5BqQIaC1RCN2sDFFRpv/Azomalli?node-id=4-1609&t=DC6BFnXVbwZpIQAe-4).
+Primer esqueleto funcional del proyecto de e-commerce para la panadería artesanal **"Las Glorias de Azomalli"**..
 
 ---
 
@@ -28,31 +28,127 @@ Primer esqueleto funcional del proyecto de e-commerce para la panadería artesan
 
 6. **Datos de Ejemplo y Backend Flask:**
    - Archivo local [`data/products.json`](file:///D:/Cursos/Azomalli/data/products.json) con los productos, precios, categorías y rutas a imágenes.
-   - Backend Flask en [`app.py`](file:///D:/Cursos/Azomalli/app.py) con rutas:
+   - Backend Flask en [`app/__init__.py`](file:///D:/Cursos/Azomalli/app/__init__.py) con rutas:
      - `GET /`: Renderiza la landing page.
      - `GET /api/products`: Devuelve el catálogo en formato JSON (soporta filtros por query params).
    - Dependencias fijadas en [`requirements.txt`](file:///D:/Cursos/Azomalli/requirements.txt).
 
 ---
 
+## 🗄️ Base de Datos (PostgreSQL)
+
+El proyecto utiliza **PostgreSQL** como motor de base de datos, **SQLAlchemy** como ORM y **Alembic** para el control de migraciones.
+
+### Modelo de datos
+
+| Tabla                | Descripción                                        |
+|----------------------|----------------------------------------------------|
+| `Persona`            | Datos personales del usuario                       |
+| `Cuenta`             | Credenciales, rol y relación 1-a-1 con `Persona`  |
+| `Producto`           | Catálogo de productos de panadería                 |
+| `Pedido`             | Pedido general de un cliente                       |
+| `DetallePedido`      | Líneas individuales de cada pedido                 |
+| `TokenRecuperacion`  | Tokens de un solo uso para recuperar contraseña    |
+
+### ENUMs de PostgreSQL
+
+- `categoria_producto`: `DULCE`, `SALADO`
+- `estado_pedido`: `PENDIENTE`, `ENTREGADO`, `CANCELADO`
+- `metodo_de_pago`: `EFECTIVO`, `TRANSFERENCIA`
+- `rol_de_usuario`: `CLIENTE`, `ADMINISTRADOR`
+
+### Estructura de archivos de base de datos
+
+```
+app/
+├── config.py          # Configuración (lee variables de entorno)
+├── database.py        # Instancia de SQLAlchemy (db)
+└── models/
+    ├── __init__.py            # Importa todos los modelos
+    ├── enums.py               # Enums Python (espejo de los ENUMs de PG)
+    ├── persona.py             # Modelo Persona
+    ├── cuenta.py              # Modelo Cuenta
+    ├── producto.py            # Modelo Producto
+    ├── pedido.py              # Modelo Pedido
+    ├── detalle_pedido.py      # Modelo DetallePedido
+    └── token_recuperacion.py  # Modelo TokenRecuperacion
+migrations/
+├── env.py             # Entorno de Alembic (integrado con Flask)
+├── versions/          # Archivos de migración
+│   └── 2b0175fafb56_crear_tablas_iniciales.py
+└── ...
+alembic.ini            # Configuración de Alembic
+.env.example           # Plantilla de variables de entorno
+```
+
+---
+
 ## 🚀 Cómo Ejecutar el Proyecto
 
-### 1. Activar el entorno virtual
+### 1. Clonar y crear entorno virtual
 
-En PowerShell o terminal de Windows:
 ```shell
+git clone <url-del-repositorio>
+cd Azomalli
 python -m venv .venv
 .\.venv\Scripts\Activate
 ```
 
-*(Si no tienes las dependencias instaladas, ejecuta: `pip install -r requirements.txt`)*
+### 2. Instalar dependencias
 
-### 2. Iniciar el servidor de Flask
+```shell
+pip install -r requirements.txt
+```
 
-```powershell
+### 3. Configurar variables de entorno
+
+Copia el archivo de ejemplo y ajusta los valores a tu entorno local:
+
+```shell
+copy .env.example .env
+```
+
+Edita `.env` con tus credenciales de PostgreSQL:
+
+```dotenv
+DATABASE_URL=postgresql+psycopg://tu_usuario:tu_contraseña@localhost:5432/azomalli
+SECRET_KEY=tu-clave-secreta
+```
+
+### 4. Crear la base de datos en PostgreSQL
+
+Asegúrate de tener PostgreSQL corriendo y crea la base de datos:
+
+```sql
+CREATE DATABASE azomalli;
+```
+
+### 5. Ejecutar migraciones con Alembic
+
+```shell
+alembic upgrade head
+```
+
+Esto crea todas las tablas y tipos ENUM definidos en el esquema.
+
+### 6. Iniciar el servidor de Flask
+
+```shell
 flask --app run.py run --debug
 ```
 
-### 3. Abrir en el navegador
+### 7. Abrir en el navegador
 
 Visita: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+---
+
+## 🔧 Comandos útiles de Alembic
+
+| Comando | Descripción |
+|---------|-------------|
+| `alembic upgrade head` | Aplicar todas las migraciones pendientes |
+| `alembic downgrade -1` | Revertir la última migración |
+| `alembic revision --autogenerate -m "descripción"` | Generar nueva migración automáticamente |
+| `alembic history` | Ver historial de migraciones |
+| `alembic current` | Ver la revisión actual de la BD |
