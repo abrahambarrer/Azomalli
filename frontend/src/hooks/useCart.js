@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { createOrder } from '../services/orderService';
 
 const STORAGE_KEY = 'azomalli_cart';
 
@@ -89,36 +90,17 @@ export function useCart() {
   }, 0);
 
   const checkout = useCallback(async () => {
-    try {
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: cart,
-          user: localStorage.getItem('azomalli_user')
-            ? JSON.parse(localStorage.getItem('azomalli_user')).name
-            : 'Invitado'
-        })
-      });
+    const orderData = {
+      items: cart,
+      user: localStorage.getItem('azomalli_user')
+        ? JSON.parse(localStorage.getItem('azomalli_user')).name
+        : 'Invitado'
+    };
 
-      if (res.ok) {
-        const data = await res.json();
-        clearCart();
-        closeCart();
-        return data;
-      }
-      throw new Error('Respuesta fallida del backend');
-    } catch (err) {
-      console.warn('Backend no disponible, simulando encargo localmente:', err);
-      const mockOrder = {
-        success: true,
-        order_id: `GLO-${Math.floor(1000 + Math.random() * 9000)}`,
-        message: '¡Tu pedido ha sido recibido y comenzará a hornearse pronto!'
-      };
-      clearCart();
-      closeCart();
-      return mockOrder;
-    }
+    const result = await createOrder(orderData);
+    clearCart();
+    closeCart();
+    return result;
   }, [cart, clearCart, closeCart]);
 
   return {

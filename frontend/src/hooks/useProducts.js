@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { fetchProducts } from '../services/productService';
 
 export function useProducts() {
   const [products, setProducts] = useState([]);
@@ -6,31 +7,14 @@ export function useProducts() {
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Todos');
 
-  const fetchProducts = useCallback(async () => {
+  const loadCatalog = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/products');
-      if (!res.ok) throw new Error('Respuesta no satisfactoria de la API');
-      const data = await res.json();
-
-      if (data && Array.isArray(data.products)) {
-        const mapped = data.products.map((p) => ({
-          ...p,
-          producto_id: p.producto_id ?? p.id,
-          nombre: p.nombre ?? p.name,
-          descripcion: p.descripcion ?? p.description,
-          precio_unitario: Number(p.precio_unitario ?? p.price ?? 0),
-          imagen_url: p.imagen_url || p.image || '/images/pan_conchas.png',
-          categoria: (p.categoria || p.category || 'DULCE').toUpperCase(),
-          es_temporada: Boolean(p.es_temporada ?? p.is_seasonal)
-        }));
-        setProducts(mapped);
-      } else {
-        setProducts([]);
-      }
+      const catalog = await fetchProducts();
+      setProducts(catalog);
       setError(null);
     } catch (err) {
-      console.warn('Error al cargar productos desde la base de datos:', err);
+      console.warn('Error al cargar productos desde el servicio centralizado:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -38,8 +22,8 @@ export function useProducts() {
   }, []);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    loadCatalog();
+  }, [loadCatalog]);
 
   // Productos de temporada desde la columna es_temporada
   const seasonal = products.filter((p) => p.es_temporada);
@@ -72,6 +56,6 @@ export function useProducts() {
     setActiveCategory,
     loading,
     error,
-    refreshProducts: fetchProducts
+    refreshProducts: loadCatalog
   };
 }
