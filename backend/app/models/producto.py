@@ -27,8 +27,35 @@ class Producto(db.Model):
     )
     es_temporada = db.Column(db.Boolean, nullable=False)
 
-    # Relación con detalles de pedido
     detalles = db.relationship("DetallePedido", back_populates="producto")
+
+    def to_dict(self):
+        """Serializa el modelo a un diccionario JSON-friendly con nombres de BD y aliases."""
+        cat_str = self.categoria.value if hasattr(self.categoria, "value") else str(self.categoria)
+        price_val = float(self.precio_unitario) if self.precio_unitario is not None else 0.0
+
+        return {
+            "producto_id": self.producto_id,
+            "nombre": self.nombre,
+            "descripcion": self.descripcion,
+            "precio_unitario": price_val,
+            "imagen_url": self.imagen_url,
+            "es_personalizable": self.es_personalizable,
+            "sabor": self.sabor,
+            "topping": self.topping,
+            "relleno": self.relleno,
+            "activo": self.activo,
+            "categoria": cat_str,
+            "es_temporada": self.es_temporada,
+            # Aliases de conveniencia
+            "id": self.producto_id,
+            "name": self.nombre,
+            "description": self.descripcion,
+            "price": price_val,
+            "image": self.imagen_url,
+            "category": cat_str,
+            "is_seasonal": self.es_temporada,
+        }
 
     def __repr__(self):
         return f"<Producto {self.producto_id}: {self.nombre}>"

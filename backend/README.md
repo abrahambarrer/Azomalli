@@ -26,11 +26,11 @@ Primer esqueleto funcional del proyecto de e-commerce para la panadería artesan
    - Filtro por categorías de pan.
    - Control de cantidades (+ / -) y vaciado de items en el carrito.
 
-6. **Datos de Ejemplo y Backend Flask:**
-   - Archivo local [`data/products.json`](file:///D:/Cursos/Azomalli/data/products.json) con los productos, precios, categorías y rutas a imágenes.
-   - Backend Flask en [`app/__init__.py`](file:///D:/Cursos/Azomalli/app/__init__.py) con rutas:
-     - `GET /`: Renderiza la landing page.
-     - `GET /api/products`: Devuelve el catálogo en formato JSON (soporta filtros por query params).
+6. **Cátalogo y Backend Flask (API REST):**
+   - Tabla `Producto` en PostgreSQL gestionada con SQLAlchemy y Alembic.
+   - Backend Flask con endpoints REST:
+     - `GET /`: Health check en JSON con el estado de la API.
+     - `GET /api/products`: Devuelve el catálogo consultado directamente de PostgreSQL (soporta filtros por `category` y `filter=seasonal`).
    - Dependencias fijadas en [`requirements.txt`](file:///D:/Cursos/Azomalli/requirements.txt).
 
 ---
@@ -111,8 +111,8 @@ copy .env.example .env
 Edita `.env` con tus credenciales de PostgreSQL:
 
 ```dotenv
-DATABASE_URL=postgresql+psycopg://tu_usuario:tu_contraseña@localhost:5432/azomalli
-SECRET_KEY=tu-clave-secreta
+DATABASE_URL=postgresql+psycopg://usuario:password@localhost:5432/nombre_base_de_datos
+SECRET_KEY=clave-secreta
 ```
 
 ### 4. Crear la base de datos en PostgreSQL
