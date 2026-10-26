@@ -28,11 +28,16 @@ export function useCart() {
   const closeCart = useCallback(() => setIsOpen(false), []);
 
   const addToCart = useCallback((product) => {
+    const prodId = product.producto_id ?? product.id;
+    const prodName = product.nombre ?? product.name;
+    const prodPrice = Number(product.precio_unitario ?? product.price ?? 0);
+    const prodImage = product.imagen_url || product.image || '/images/pan_conchas.png';
+
     setCart((prevCart) => {
-      const existing = prevCart.find((item) => item.id === product.id);
+      const existing = prevCart.find((item) => (item.producto_id ?? item.id) === prodId);
       if (existing) {
         return prevCart.map((item) =>
-          item.id === product.id
+          (item.producto_id ?? item.id) === prodId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -40,10 +45,14 @@ export function useCart() {
       return [
         ...prevCart,
         {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
+          id: prodId,
+          producto_id: prodId,
+          name: prodName,
+          nombre: prodName,
+          price: prodPrice,
+          precio_unitario: prodPrice,
+          image: prodImage,
+          imagen_url: prodImage,
           quantity: 1
         }
       ];
@@ -54,7 +63,8 @@ export function useCart() {
     setCart((prevCart) => {
       return prevCart
         .map((item) => {
-          if (item.id === id) {
+          const currentId = item.producto_id ?? item.id;
+          if (currentId === id) {
             const newQty = item.quantity + change;
             return newQty > 0 ? { ...item, quantity: newQty } : null;
           }
@@ -65,7 +75,7 @@ export function useCart() {
   }, []);
 
   const removeItem = useCallback((id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    setCart((prevCart) => prevCart.filter((item) => (item.producto_id ?? item.id) !== id));
   }, []);
 
   const clearCart = useCallback(() => {
@@ -73,7 +83,10 @@ export function useCart() {
   }, []);
 
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalAmount = cart.reduce((sum, item) => {
+    const itemPrice = Number(item.precio_unitario ?? item.price ?? 0);
+    return sum + itemPrice * item.quantity;
+  }, 0);
 
   const checkout = useCallback(async () => {
     try {

@@ -71,47 +71,58 @@ export function CartDrawer({
               <small>Elige un pan recién salido del horno en nuestro catálogo.</small>
             </div>
           ) : (
-            items.map((item) => (
-              <div key={item.id} className="cart-item" data-id={item.id}>
-                <img
-                  src={item.image || '/images/pan_conchas.png'}
-                  alt={item.name}
-                  className="cart-item-img"
-                />
-                <div className="cart-item-info">
-                  <h4 className="cart-item-name">{item.name}</h4>
-                  <span className="cart-item-price">
-                    ${(item.price * item.quantity).toFixed(2)} MXN
-                  </span>
-                  <div className="cart-item-controls">
-                    <button
-                      type="button"
-                      className="qty-btn btn-decrease"
-                      onClick={() => onUpdateQuantity(item.id, -1)}
-                      aria-label="Disminuir cantidad"
-                    >
-                      -
-                    </button>
-                    <span className="cart-item-qty">{item.quantity}</span>
-                    <button
-                      type="button"
-                      className="qty-btn btn-increase"
-                      onClick={() => onUpdateQuantity(item.id, 1)}
-                      aria-label="Aumentar cantidad"
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      className="cart-item-remove"
-                      onClick={() => onRemoveItem(item.id)}
-                    >
-                      Quitar
-                    </button>
+            items.map((item) => {
+              const itemId = item.producto_id ?? item.id;
+              const itemName = item.nombre ?? item.name;
+              const itemPrice = Number(item.precio_unitario ?? item.price ?? 0);
+              const itemImage = item.imagen_url || item.image || '/images/pan_conchas.png';
+
+              return (
+                <div key={itemId} className="cart-item" data-id={itemId}>
+                  <img
+                    src={itemImage}
+                    alt={itemName}
+                    className="cart-item-img"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/images/pan_conchas.png';
+                    }}
+                  />
+                  <div className="cart-item-info">
+                    <h4 className="cart-item-name">{itemName}</h4>
+                    <span className="cart-item-price">
+                      ${(itemPrice * item.quantity).toFixed(2)} MXN
+                    </span>
+                    <div className="cart-item-controls">
+                      <button
+                        type="button"
+                        className="qty-btn btn-decrease"
+                        onClick={() => onUpdateQuantity(itemId, -1)}
+                        aria-label="Disminuir cantidad"
+                      >
+                        -
+                      </button>
+                      <span className="cart-item-qty">{item.quantity}</span>
+                      <button
+                        type="button"
+                        className="qty-btn btn-increase"
+                        onClick={() => onUpdateQuantity(itemId, 1)}
+                        aria-label="Aumentar cantidad"
+                      >
+                        +
+                      </button>
+                      <button
+                        type="button"
+                        className="cart-item-remove"
+                        onClick={() => onRemoveItem(itemId)}
+                      >
+                        Quitar
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 

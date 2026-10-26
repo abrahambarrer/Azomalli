@@ -1,21 +1,41 @@
 import React from 'react';
 
 export function ProductCard({ product, onAddToCart }) {
-  const { id, name, description, tag, price, image } = product;
+  const id = product.producto_id ?? product.id;
+  const name = product.nombre ?? product.name;
+  const description = product.descripcion ?? product.description;
+  const price = product.precio_unitario ?? product.price ?? 0;
+  const image = product.imagen_url || product.image || '/images/pan_conchas.png';
+
+  // Etiqueta visual de temporada o categoría
+  const tag = product.tag || (
+    product.es_temporada
+      ? 'DE TEMPORADA'
+      : product.categoria === 'DULCE'
+      ? 'PAN DULCE'
+      : product.categoria === 'SALADO'
+      ? 'PAN SALADO'
+      : null
+  );
 
   const formattedPrice = new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: 'MXN'
-  }).format(price || 0);
+  }).format(price);
 
   return (
     <div className="product-card-wrapper">
       <article className="product-card-container" data-id={id}>
         <div className="product-image-box">
           <img
-            src={image || '/images/pan_conchas.png'}
+            src={image}
             alt={name}
             loading="lazy"
+            onError={(e) => {
+              // Fallback por si la imagen externa o URL de Cloudinary fallara
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = '/images/pan_conchas.png';
+            }}
           />
           <span className="product-price-badge">{formattedPrice}</span>
         </div>
