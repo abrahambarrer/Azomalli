@@ -2,3 +2,7 @@ __pycache__
 .venv
 files
 .env
+node_modules
+build
+dist
+
